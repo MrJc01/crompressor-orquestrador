@@ -45,7 +45,7 @@ A cesariana foi feita e o código central consolidado com os submodules está aq
 🔗 **Repositório Orquestrador**: [github.com/MrJc01/crompressor-orquestrador](https://github.com/MrJc01/crompressor-orquestrador)
 🔗 **Comunidade CROM**: [crom.run/comunidade](http://crom.run/comunidade)
 
-No link da comunidade você encontrará nosso **Discord** e o grupo do **WhatsApp**. Podem me achar lá em ambos para conversarmos diretamente. Estou muito ansioso com tudo o que construímos, mas, como sou um programador sênior escaldado, eu "espero o pior" (testes brutais de estresse que quebrem tudo de novo).
+No link da comunidade você encontrará nosso **Discord** e o grupo do **WhatsApp**. Podem me achar lá em ambos para conversarmos diretamente. Estou muito ansioso com tudo o que construímos, e espero o pior (testes brutais de estresse que quebrem tudo de novo) como um bom programador. :)
 
 Se você entende as mecânicas obscuras do ArXiv, Zenodo, repositórios Peer-Review de CS (Computer Science) ou se você é pesquisador com tempo disponível: **deixe seu comentário abaixo**. Mande mensagens. Abram *issues* de colaboração no nosso GitHub da pasta `papeis`.
 
