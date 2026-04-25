@@ -12,7 +12,7 @@ Hoje o foco não é exibir mais provas sobre código ou explicar algoritmos O(1)
 
 ## 1. O Abismo Científico: Como Validar Pesquisa Fora da Faculdade?
 
-Ao longo desta jornada documentada no GitHub, eu cheguei a escrever **7 papéis formais e técnicos (papers)** abordando o Limite de Shannon, os teoremas da Distância de Hamming aplicados na memória Go, Vetorização Quantizada de matrizes brutas e os relatórios estritos das falhas de compressão isolada (V1 a V4) perante o Zstandard contra o esmagador êxito da Deduplicação de Borda P2P (99.4% em blocos de 4KB). 
+Ao longo desta jornada documentada no GitHub, eu cheguei a escrever [**7 papéis formais e técnicos (papers)**](https://github.com/MrJc01/crompressor-neuronio/tree/main/pesquisa0/papers) abordando o Limite de Shannon, os teoremas da Distância de Hamming aplicados na memória Go, Vetorização Quantizada de matrizes brutas e os relatórios estritos das falhas de compressão isolada (V1 a V4) perante o Zstandard contra o esmagador êxito da Deduplicação de Borda P2P (99.4% em blocos de 4KB). 
 
 A questão dura é: **Eu nunca publiquei absolutamente nenhum artigo científico na minha vida**.
 E eu não tenho filiação formal de uma universidade famosa atrelada ao meu e-mail. Eu estou querendo levar esse motor para ser testado criticamente na base do Zenodo ou nos pré-prints do ArXiv, plataformas globais onde a tecnologia séria e os doutores operam e testam *papers*. E eu peço socorro abertamente a essa comunidade que domina essas rotas: 
@@ -42,7 +42,10 @@ Quero democratizar a matemática pesada com testes em vídeo rápidos e de lingu
 
 Se você tem curiosidade de ver onde tudo isso está agrupado e organizado agora mesmo:
 A cesariana foi feita e o código central consolidado com os submodules está aqui:
-🔗 **Repositório Central**: [github.com/MrJc01/crompressor](https://github.com/MrJc01/crompressor)
+🔗 **Repositório Orquestrador**: [github.com/MrJc01/crompressor-orquestrador](https://github.com/MrJc01/crompressor-orquestrador)
+🔗 **Comunidade CROM**: [crom.run/comunidade](http://crom.run/comunidade)
+
+No link da comunidade você encontrará nosso **Discord** e o grupo do **WhatsApp**. Podem me achar lá em ambos para conversarmos diretamente. Estou muito ansioso com tudo o que construímos, mas, como sou um programador sênior escaldado, eu "espero o pior" (testes brutais de estresse que quebrem tudo de novo).
 
 Se você entende as mecânicas obscuras do ArXiv, Zenodo, repositórios Peer-Review de CS (Computer Science) ou se você é pesquisador com tempo disponível: **deixe seu comentário abaixo**. Mande mensagens. Abram *issues* de colaboração no nosso GitHub da pasta `papeis`.
 
