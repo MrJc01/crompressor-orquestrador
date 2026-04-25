@@ -96,7 +96,7 @@ Nós conduzimos um experimento tentando rodar algoritmos pesados de navegação 
 
 Na computação tradicional, mapear infinitos estados de física (posição, inércia) explode o consumo de memória RAM absurdamente rápido. O que nós fizemos? Injetamos a engine do Crompressor na memória da simulação baseada no princípio da *Active Inference* (Minimização de Energia Livre de Karl Friston). 
 O motor quantizou os caminhos da rua em tempo real. Em vez de calcular grafos gigantes, a simulação apenas consultava os **ponteiros CROM de 24 bytes** dos trajetos anteriores. 
-**O Resultado Matemático**: [Nossos logs registraram um **Speedup de 12.7x** na velocidade de resolução do labirinto](https://github.com/MrJc01/crompressor-orquestrador/blob/main/crompressor-neuronio/pesquisa0/papers/papel0.md#energia-livre-do-agente-ai) em comparação com sistemas clássicos, com a Energia Livre do sistema decaindo consistentemente em 98%, provando que o agente "aprendeu" o caminho economizando ciclos de CPU e RAM brutalmente.
+**O Resultado Matemático**: [Nossos logs registraram um **Speedup de 12.7x** na velocidade de resolução do labirinto](https://github.com/MrJc01/crompressor-neuronio/blob/main/pesquisa0/papers/papel0.md#energia-livre-do-agente-ai) em comparação com sistemas clássicos, com a Energia Livre do sistema decaindo consistentemente em 98%, provando que o agente "aprendeu" o caminho economizando ciclos de CPU e RAM brutalmente.
 
 ### 4.3. Onde você NUNCA deve usá-lo:
 *   Arquivos já altamente comprimidos (MP4, MP3, JPEG). O Crompressor lida mal com entropia de Shannon artificialmente inflada.
@@ -112,7 +112,7 @@ Você pode ver o código fonte em Go, auditar os 7 *papers* matemáticos, clonar
 
 🔗 **GitHub do Crompressor Orquestrador**: [github.com/MrJc01/crompressor-orquestrador](https://github.com/MrJc01/crompressor-orquestrador)
 🔗 **Documentação Oficial de Resultados**: [Acesse a pasta papeis/resultados/ do orquestrador](https://github.com/MrJc01/crompressor-orquestrador/tree/main/papeis/resultados)
-🔗 **Teoria Base (Active Inference e Neurônio)**: [Veja o papel0.md no laboratório neural](https://github.com/MrJc01/crompressor-orquestrador/blob/main/crompressor-neuronio/pesquisa0/papers/papel0.md)
+🔗 **Teoria Base (Active Inference e Neurônio)**: [Veja o papel0.md no laboratório neural](https://github.com/MrJc01/crompressor-neuronio/blob/main/pesquisa0/papers/papel0.md)
 
 ### A Série de Artigos
 Este artigo é o pilar estrutural do projeto, mas a execução técnica teve dias dolorosos.
