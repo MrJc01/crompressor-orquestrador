@@ -25,15 +25,17 @@ echo "start" > README.md && git add . && git commit -m "start"
 
 ---
 
-## 2. As Dores da Exploração e a IA Sancionada
+## 2. A Orquestração de IAs e as "Mentiras" do Algoritmo
 
-Quando a arquitetura começou a tomar forma, o projeto explodiu massivamente. Em uma semana eu já possuía repositórios dedicados para segurança, protocolos P2P, interfaces de rede e Matemática. A complexidade do código estava me engolindo vivo.
+Muitos desenvolvedores têm medo de admitir que usam IA, mas a verdade crua é: eu usei Inteligência Artificial desde o primeiríssimo dia. Não para escrever código cego, mas para entender profundamente sistemas complexos externos e aplicar ideias parecidas no motor do CROM. 
 
-Foi aí que decidi usar IAs avançadas para **orquestrar** o desenvolvimento. A capacidade de um modelo de linguagem absorver arquivos Golang, sugerir testes unitários e identificar funções corrompidas foi maravilhosa no início. Mas há um alerta brutal: **a IA rapidamente perde o controle em sistemas fundamentais**.
+Para esse projeto massivo, eu usei o **Antigravity** e orquestrei mais de **30 contas do Google** (sendo uma delas paga). A dinâmica era clara:
+* O **Claude 4.6** foi absolutamente brilhante para explicar conceitos obtusos e rascunhar as bases do que eu precisava.
+* O **Gemini 3.1**, por outro lado, precisava de muito mais foco e restrições de detalhes para entender a arquitetura (e, por ser um sistema mais novo e com pouca documentação de orquestração interna, tentou mentir e alucinar diversas vezes dizendo que tinha feito algo que não fez).
 
-Quando cheguei no desafio de ler 500 MB de dados em memória e extrair vetores quantizados (*Vector Quantization e Locality-Sensitive Hashing - LSH*), eu deleguei tarefas muito complexas ao agente de Inteligência Artificial. O resultado? O sistema da IA alucinava, criava ponteiros Nulos em C++ e sobrescrevia os arquivos de testes corretos, introduzindo vazamentos de memória brutais e travando completamente o Garbage Collector do Go.
+Como construí dezenas de outros projetos na vida, orquestrar IAs não é um problema quando você sabe exatamente o que está fazendo. O problema é que, no Crompressor, eu estava entrando num pântano matemático que levaria uns 10 anos de estudo acadêmico tradicional antes da era da IA. Só o que eu li, reli e explorei sobre o [Teorema do Limite de Shannon](https://pt.wikipedia.org/wiki/Teorema_de_Shannon-Hartley) daria um livro.
 
-Para retomar o eixo do projeto, eu precisei barrar a automação e voltar para a base. Tive que analisar minuciosamente os *logs comparativos antigos*, resgatar backups de quando testamos distâncias lineares e forçar testes em todas as possibilidades possíveis. A IA é a mais incrível ferramenta de orquestração moderna, mas se você não tem a coragem de ler o log do Kernel e analisar a matemática pura da entropia, você será vítima dela. A engenharia profunda ainda precisa de humanos no leme.
+Mas quer saber? Eu agradeço por cada "cara batida na parede" com a IA alucinando ou o código quebrando. Porque a cada batida, o projeto revelava uma nova direção. Quando a [busca linear falhava](https://github.com/MrJc01/crompressor-orquestrador/blob/main/crompressor-neuronio/pesquisa0/papers/papel0.md), eu era forçado a explorar a [Distância de Hamming](https://pt.wikipedia.org/wiki/Dist%C3%A2ncia_de_Hamming). Quando a memória RAM estourava, eu era forçado a abandonar a compressão tradicional e abraçar os Codebooks P2P. Explodimos todas as possibilidades e isso é só a ponta do iceberg.
 
 ---
 
