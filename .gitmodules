@@ -1,0 +1,36 @@
+[submodule "crompressor"]
+	path = crompressor
+	url = https://github.com/MrJc01/crompressor.git
+[submodule "crompressor-gui"]
+	path = crompressor-gui
+	url = https://github.com/MrJc01/crompressor-gui.git
+[submodule "crompressor-ia"]
+	path = crompressor-ia
+	url = https://github.com/MrJc01/crompressor-ia.git
+[submodule "crompressor-matematica"]
+	path = crompressor-matematica
+	url = https://github.com/MrJc01/crompressor-matematica.git
+[submodule "crompressor-neuronio"]
+	path = crompressor-neuronio
+	url = https://github.com/MrJc01/crompressor-neuronio.git
+[submodule "crompressor-old"]
+	path = crompressor-old
+	url = /home/j/Documentos/GitHub/crom/crompressor
+[submodule "crompressor-projetos"]
+	path = crompressor-projetos
+	url = https://github.com/MrJc01/crompressor-projetos.git
+[submodule "crompressor-security"]
+	path = crompressor-security
+	url = https://github.com/MrJc01/crompressor-security.git
+[submodule "crompressor-sinapse"]
+	path = crompressor-sinapse
+	url = https://github.com/MrJc01/crompressor-sinapse.git
+[submodule "crompressor-sync"]
+	path = crompressor-sync
+	url = https://github.com/MrJc01/crompressor-sync.git
+[submodule "crompressor-video"]
+	path = crompressor-video
+	url = https://github.com/MrJc01/crompressor-video.git
+[submodule "crompressor-wasm"]
+	path = crompressor-wasm
+	url = https://github.com/MrJc01/crompressor-wasm.git

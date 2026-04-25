@@ -1,0 +1,13 @@
+papeis/benchmarks/diverse_data/
+papeis/benchmarks/train_big/
+papeis/benchmarks/train_large/
+*.log
+*.json
+*.bin
+*.tar
+*.txt
+*.crom
+*.cromdb
+*.zip
+*.gz
+*.zst
