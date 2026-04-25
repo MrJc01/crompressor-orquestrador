@@ -12,6 +12,8 @@ Hoje, não falarei das engrenagens do motor prontas, mas quero convidar você, d
 ## 1. O Chamado à Aventura (e a Fuga do CRUD)
 
 Por volta dos meus 14 anos, assisti a *Mr. Robot*. Aquela ideia do hacker, o "Batman de home office", explodiu minha cabeça. Contudo, ao longo dos anos, com a entrada brutal no mercado de trabalho tradicional, muito desse encantamento sumiu. Fui sugado pelas regras das empresas: fazer APIs em Node.js, levantar bancos de dados, escrever controllers simples e viver uma rotina corporativa (o tão falado "Você só sabe CRUD").
+> https://www.tabnews.com.br/MrJ/voce-so-sabe-programar-crud-por-que-deixamos-o-mercado-programar-quem-nos-somos
+> https://www.tabnews.com.br/MrJ/apenas-um-relato-mrj
 
 Em março de 2026, meu "brio" interno (aquela energia para buscar excelência e não aceitar o progresso estagnado que o filósofo Clóvis de Barros sempre defende) gritou. Eu precisava fazer algo *hardcore*. Algo que espremesse a máquina e me lembrasse do porquê entrei na área de tecnologia.
 
