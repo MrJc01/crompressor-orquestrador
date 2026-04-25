@@ -4,7 +4,7 @@ author: "MrJ"
 ---
 
 Esta é a terceira e última parte documentada por mim (por enquanto) da fundação do ecossistema Crompressor.
-Se você acabou de chegar, entenda a base deste projeto lendo a [Parte 1: A Ilusão da Compressão (O Triunfo P2P)](https://github.com/MrJc01/crompressor/tree/master/papeis/tabnews/crompressor/01_a_ilusao_da_compressao.md) e sinta o peso dos meses de desenvolvimento escovando bits com Go lendo a [Parte 2: Jornada Insana de 30 Dias](https://github.com/MrJc01/crompressor/tree/master/papeis/tabnews/crompressor/02_jornada_30_dias.md).
+Se você acabou de chegar, entenda a base deste projeto lendo a [Parte 1: A Ilusão da Compressão (O Triunfo P2P)](https://github.com/MrJc01/crompressor/tree/main/papeis/tabnews/crompressor/01_a_ilusao_da_compressao.md) e sinta o peso dos meses de desenvolvimento escovando bits com Go lendo a [Parte 2: Jornada Insana de 30 Dias](https://github.com/MrJc01/crompressor/tree/main/papeis/tabnews/crompressor/02_jornada_30_dias.md).
 
 Hoje o foco não é exibir mais provas sobre código ou explicar algoritmos O(1). O foco hoje é humildade e senso de comunidade. O Crompressor virou um monstro Orquestrador que foge do controle de apenas um desenvolvedor solitário. Eu estruturei o repositório inteiramente, organizei o Git Submodules, mas esbarrei em uma parede e não sei como passar.
 

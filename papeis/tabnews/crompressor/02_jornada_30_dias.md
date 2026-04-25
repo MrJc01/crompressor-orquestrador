@@ -3,7 +3,7 @@ title: "30 Dias Insanos: Do Zero ao Limite Matemático em Go"
 author: "MrJ"
 ---
 
-Esta é a Parte 2 da série oficial sobre a construção do Crompressor. Se você não leu a [Parte 1 (A Ilusão da Compressão e a vitória de 99.4% no P2P)](https://github.com/MrJc01/crompressor/tree/master/papeis/tabnews/crompressor/01_a_ilusao_da_compressao.md), eu recomendo fortemente que pare e leia os fundamentos do nosso ecossistema e os números antes de prosseguir.
+Esta é a Parte 2 da série oficial sobre a construção do Crompressor. Se você não leu a [Parte 1 (A Ilusão da Compressão e a vitória de 99.4% no P2P)](https://github.com/MrJc01/crompressor/tree/main/papeis/tabnews/crompressor/01_a_ilusao_da_compressao.md), eu recomendo fortemente que pare e leia os fundamentos do nosso ecossistema e os números antes de prosseguir.
 
 Hoje, não falarei das engrenagens do motor prontas, mas quero convidar você, dev do TabNews, para uma volta ao começo. O relato visceral, não censurado, de sair do CRUD, brigar com vazamentos de memória na madrugada, perder o controle da IA orquestradora e falhar incansavelmente até o código funcionar.
 
