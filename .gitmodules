@@ -13,9 +13,6 @@
 [submodule "crompressor-neuronio"]
 	path = crompressor-neuronio
 	url = https://github.com/MrJc01/crompressor-neuronio.git
-[submodule "crompressor-old"]
-	path = crompressor-old
-	url = /home/j/Documentos/GitHub/crom/crompressor
 [submodule "crompressor-projetos"]
 	path = crompressor-projetos
 	url = https://github.com/MrJc01/crompressor-projetos.git
