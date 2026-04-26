@@ -53,39 +53,74 @@ def simulador_estocastico_pesquisa4():
         
     def add_ruido(vetor, intensidade):
         return [v + random.gauss(0, intensidade) for v in vetor]
-        
-    vetor_sabor = gerar_emb("sabor_fruta")
-    vetor_cor = gerar_emb("cor_fruta")
-    vetor_carro = gerar_emb("carro_classe")
 
-    chat = [
-        {"id": "T1", "texto": "Qual a cor disso?", "embedding": add_ruido(vetor_cor, 0.05)},
-        {"id": "T2", "texto": "Qual o sabor disso?", "embedding": add_ruido(vetor_sabor, 0.05)},
-        # Conversa longa para testar Memória Evolutiva (Decaimento)
-        {"id": "T3", "texto": "O dólar fechou em quanto?", "embedding": gerar_emb("dolar")},
-        {"id": "T4", "texto": "E o euro?", "embedding": add_ruido(gerar_emb("dolar"), 0.1)},
-        {"id": "T5", "texto": "Certo.", "embedding": gerar_emb("ruido_generico")}, # Frase neutra (deve decair a memória anterior)
-        {"id": "T6", "texto": "Acha que sobe amanhã?", "embedding": add_ruido(gerar_emb("dolar"), 0.15)}, # Retorna ao assunto, dependendo do decaimento
-    ]
+    def gerar_variacoes_stress_texto(vetor_base, tipo_stress="normal"):
+        vetor = vetor_base.copy()
+        if tipo_stress == "hard_negative":
+            # Inverte o sinal dos primeiros 15% dos bits (simula inversão do 'sujeito')
+            # Isso força uma distância de Hamming moderada-alta (10 a 16 bits de diferença)
+            limite = int(len(vetor) * 0.15)
+            for i in range(limite):
+                vetor[i] = -vetor[i]
+        elif tipo_stress == "parafase":
+            # Apenas ruído leve
+            vetor = add_ruido(vetor, 0.05)
+        return vetor
 
-    vetor_maca = gerar_emb("imagem_maca")
-    
-    def construir_imagem(nome, obj_central, deslocamento=False):
+    def gerar_variacoes_stress_visao(obj_central, tipo_stress="normal"):
         patches = []
         indices_obj = [5, 6, 9, 10]
-        if deslocamento:
-            indices_obj = [6, 7, 10, 11] # Objeto deslocado
-            
+        
+        if tipo_stress == "deslocamento":
+            indices_obj = [6, 7, 10, 11]
+        elif tipo_stress == "oclusao_parcial":
+            # Esconde metade do objeto
+            indices_obj = [5, 6]
+        elif tipo_stress == "rotacao_extrema":
+            # Objeto em cantos opostos (rotação/zoom diferente)
+            indices_obj = [0, 3, 12, 15]
+
         for i in range(16):
             peso = 1.5 if i in [5, 6, 9, 10] else 0.8
-            patch = add_ruido(obj_central, 0.15) if i in indices_obj else add_ruido(gerar_emb("fundo"), 0.01)
+            if i in indices_obj:
+                if tipo_stress == "salt_pepper":
+                    # Adiciona picos extremos de ruído
+                    patch = add_ruido(obj_central, 0.5)
+                else:
+                    patch = add_ruido(obj_central, 0.15)
+            else:
+                patch = add_ruido(gerar_emb(f"fundo_{i}"), 0.01)
             patches.append({"indice": i, "peso": peso, "embedding": patch})
         return patches
 
-    visao = [
-        {"id": "IMG_MACA_C", "descricao": "Maçã Central (Classe CIFAR)", "blocos": construir_imagem("MACA", vetor_maca)},
-        {"id": "IMG_MACA_D", "descricao": "Maçã Deslocada", "blocos": construir_imagem("MACA", vetor_maca, deslocamento=True)},
-    ]
+    chat = []
+    # Gerando 100 amostras de texto
+    temas = ["tecnologia", "natureza", "economia", "esportes", "ciência"]
+    for i in range(100):
+        tema = random.choice(temas)
+        vetor_base = gerar_emb(f"tema_{tema}_{i//10}")
+        
+        tipo = random.choice(["normal", "parafase", "hard_negative"])
+        emb = gerar_variacoes_stress_texto(vetor_base, tipo)
+        
+        texto_str = f"Frase sobre {tema} (Tipo: {tipo})"
+        if tipo == "hard_negative":
+            texto_str = f"NÃO é uma frase sobre {tema} (Hard Negative)"
+            
+        chat.append({"id": f"T{i}", "texto": texto_str, "embedding": emb})
+
+    visao = []
+    # Gerando 100 amostras de imagem
+    classes_cifar = ["gato", "cachorro", "carro", "aviao", "maca"]
+    for i in range(100):
+        classe = random.choice(classes_cifar)
+        vetor_maca = gerar_emb(f"imagem_{classe}_{i//10}")
+        
+        tipo = random.choice(["normal", "deslocamento", "oclusao_parcial", "rotacao_extrema", "salt_pepper"])
+        blocos = gerar_variacoes_stress_visao(vetor_maca, tipo)
+        
+        visao.append({"id": f"IMG_{i}", "descricao": f"{classe.capitalize()} (Tipo: {tipo})", "blocos": blocos})
+
     return chat, visao
 
 if __name__ == "__main__":

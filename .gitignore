@@ -11,3 +11,6 @@ papeis/benchmarks/train_large/
 *.zip
 *.gz
 *.zst
+*.csv
+__pycache__/
+*.exe
