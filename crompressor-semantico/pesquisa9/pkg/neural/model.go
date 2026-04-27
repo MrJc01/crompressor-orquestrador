@@ -4,6 +4,7 @@ import (
 	"bufio"
 	"encoding/binary"
 	"fmt"
+	"io"
 	"math"
 	"math/rand"
 	"os"
@@ -487,7 +488,7 @@ func (m *Model) Load(path string) error {
 		var bLen int32
 		binary.Read(r, binary.LittleEndian, &bLen)
 		b := make([]byte, bLen)
-		r.Read(b)
+		io.ReadFull(r, b)
 		m.Vocab[i] = string(b)
 		m.WordToIdx[string(b)] = i
 		m.IdxToWord[i] = string(b)
@@ -528,12 +529,13 @@ func writeVec(w *bufio.Writer, vec []float64) {
 
 func readMatrix(r *bufio.Reader, rows, cols int) [][]float64 {
 	mat := make([][]float64, rows)
+	buf := make([]byte, cols*4)
 	for i := range mat {
 		mat[i] = make([]float64, cols)
-		for j := range mat[i] {
-			var v float32
-			binary.Read(r, binary.LittleEndian, &v)
-			mat[i][j] = float64(v)
+		io.ReadFull(r, buf)
+		for j := 0; j < cols; j++ {
+			bits := binary.LittleEndian.Uint32(buf[j*4 : (j+1)*4])
+			mat[i][j] = float64(math.Float32frombits(bits))
 		}
 	}
 	return mat
@@ -541,10 +543,11 @@ func readMatrix(r *bufio.Reader, rows, cols int) [][]float64 {
 
 func readVec(r *bufio.Reader, size int) []float64 {
 	vec := make([]float64, size)
+	buf := make([]byte, size*4)
+	io.ReadFull(r, buf)
 	for i := range vec {
-		var v float32
-		binary.Read(r, binary.LittleEndian, &v)
-		vec[i] = float64(v)
+		bits := binary.LittleEndian.Uint32(buf[i*4 : (i+1)*4])
+		vec[i] = float64(math.Float32frombits(bits))
 	}
 	return vec
 }
