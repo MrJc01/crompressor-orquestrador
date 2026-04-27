@@ -11,8 +11,8 @@ type MatrizPCAMulti struct {
 		Algoritmo       string `json:"algoritmo"`
 		DimensaoEntrada int    `json:"dimensao_entrada"`
 		DimensaoSaida   int    `json:"dimensao_saida"`
-		TreinadoEm      string `json:"treinado_em"`
 	} `json:"metadados"`
+	Centroide []float64   `json:"centroide"`
 	Heads struct {
 		Entidade [][]float64 `json:"entidade"`
 		Contexto [][]float64 `json:"contexto"`
@@ -23,6 +23,7 @@ type MatrizPCAMulti struct {
 var pcaEntidade [][]float32
 var pcaContexto [][]float32
 var pcaVisual [][]float32
+var pcaCentroide []float32
 
 func converterParaFloat32(matriz [][]float64, dimensao int) [][]float32 {
 	res := make([][]float32, dimensao)
@@ -50,7 +51,18 @@ func CarregarMatrizPCA(caminho string) error {
 	pcaContexto = converterParaFloat32(dados.Heads.Contexto, dim)
 	pcaVisual = converterParaFloat32(dados.Heads.Visual, dim)
 	
-	log.Printf("[+] LSH Multi-Head Inicializado: %d hiperplanos por cabeça carregados.\n", dim)
+	// Carregar centróide se disponível (PCA Real)
+	if len(dados.Centroide) > 0 {
+		pcaCentroide = make([]float32, len(dados.Centroide))
+		for i, v := range dados.Centroide {
+			pcaCentroide[i] = float32(v)
+		}
+		log.Printf("[+] LSH PCA Real: %d hiperplanos, centróide %d dims carregado.\n", dim, len(pcaCentroide))
+	} else {
+		pcaCentroide = nil
+		log.Printf("[+] LSH Multi-Head: %d hiperplanos por cabeça carregados.\n", dim)
+	}
+	
 	return nil
 }
 
@@ -59,7 +71,12 @@ func gerarHash(embedding []float32, hiperplanos [][]float32) uint64 {
 	for i, hiperplano := range hiperplanos {
 		var dot float32 = 0.0
 		for j := 0; j < len(embedding) && j < len(hiperplano); j++ {
-			dot += embedding[j] * hiperplano[j]
+			val := embedding[j]
+			// Subtrai o centróide se disponível (PCA Real)
+			if pcaCentroide != nil && j < len(pcaCentroide) {
+				val -= pcaCentroide[j]
+			}
+			dot += val * hiperplano[j]
 		}
 		if dot > 0 {
 			hash |= (1 << i)

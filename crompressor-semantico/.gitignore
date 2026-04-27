@@ -1,0 +1,32 @@
+# Binários Go compilados
+crom-chat
+crom-scale
+crom-stress
+crom-benchmark
+crom-final
+teste_pca
+teste_real
+
+# Modelos exportados (pesados)
+*.crom
+
+# Ambientes virtuais Python
+.venv*/
+.venv_torch/
+__pycache__/
+*.pyc
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Temporários de treino
+*.weights
+*.checkpoint
