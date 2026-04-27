@@ -1,9 +1,12 @@
 package neural
 
 import (
+	"bufio"
+	"encoding/binary"
 	"fmt"
 	"math"
 	"math/rand"
+	"os"
 	"sort"
 	"strings"
 )
@@ -408,4 +411,140 @@ func splitSentences(corpus string) []string {
 		}
 	}
 	return r
+}
+
+// ---- Save/Load de Pesos Treinados ----
+
+// Save serializa vocab + pesos em formato binário
+func (m *Model) Save(path string) error {
+	f, err := os.Create(path)
+	if err != nil {
+		return err
+	}
+	defer f.Close()
+	w := bufio.NewWriter(f)
+
+	// Magic + Config
+	binary.Write(w, binary.LittleEndian, []byte("CROM"))
+	binary.Write(w, binary.LittleEndian, int32(m.Config.EmbeddingDim))
+	binary.Write(w, binary.LittleEndian, int32(m.Config.HiddenDim))
+	binary.Write(w, binary.LittleEndian, int32(m.Config.ContextRadius))
+
+	// Vocab
+	binary.Write(w, binary.LittleEndian, int32(len(m.Vocab)))
+	for _, word := range m.Vocab {
+		b := []byte(word)
+		binary.Write(w, binary.LittleEndian, int32(len(b)))
+		w.Write(b)
+	}
+
+	// Pesos
+	writeMatrix(w, m.Emb)
+	writeMatrix(w, m.PosEmb)
+	writeMatrix(w, m.W1)
+	writeVec(w, m.B1)
+	writeMatrix(w, m.W2)
+	writeVec(w, m.B2)
+
+	w.Flush()
+	info, _ := f.Stat()
+	fmt.Printf("[+] Pesos salvos: %s (%.1f KB)\n", path, float64(info.Size())/1024)
+	return nil
+}
+
+// Load carrega vocab + pesos de ficheiro binário
+func (m *Model) Load(path string) error {
+	f, err := os.Open(path)
+	if err != nil {
+		return err
+	}
+	defer f.Close()
+	r := bufio.NewReader(f)
+
+	// Magic
+	magic := make([]byte, 4)
+	r.Read(magic)
+	if string(magic) != "CROM" {
+		return fmt.Errorf("formato inválido (magic: %s)", string(magic))
+	}
+
+	// Config
+	var e, h, cr int32
+	binary.Read(r, binary.LittleEndian, &e)
+	binary.Read(r, binary.LittleEndian, &h)
+	binary.Read(r, binary.LittleEndian, &cr)
+	m.Config.EmbeddingDim = int(e)
+	m.Config.HiddenDim = int(h)
+	m.Config.ContextRadius = int(cr)
+
+	// Vocab
+	var vSize int32
+	binary.Read(r, binary.LittleEndian, &vSize)
+	m.Vocab = make([]string, vSize)
+	m.WordToIdx = make(map[string]int)
+	m.IdxToWord = make(map[int]string)
+	for i := 0; i < int(vSize); i++ {
+		var bLen int32
+		binary.Read(r, binary.LittleEndian, &bLen)
+		b := make([]byte, bLen)
+		r.Read(b)
+		m.Vocab[i] = string(b)
+		m.WordToIdx[string(b)] = i
+		m.IdxToWord[i] = string(b)
+	}
+	m.MaskIdx = m.WordToIdx[MaskToken]
+
+	// Pesos
+	W := 2*m.Config.ContextRadius + 1
+	V := len(m.Vocab)
+	E := m.Config.EmbeddingDim
+	H := m.Config.HiddenDim
+
+	m.Emb = readMatrix(r, V, E)
+	m.PosEmb = readMatrix(r, W, E)
+	m.W1 = readMatrix(r, W*E, H)
+	m.B1 = readVec(r, H)
+	m.W2 = readMatrix(r, H, V)
+	m.B2 = readVec(r, V)
+
+	fmt.Printf("[+] Pesos carregados: %s | vocab=%d params=%d\n", path,
+		len(m.Vocab), V*E+W*E+(W*E)*H+H+H*V+V)
+	return nil
+}
+
+func writeMatrix(w *bufio.Writer, mat [][]float64) {
+	for _, row := range mat {
+		for _, v := range row {
+			binary.Write(w, binary.LittleEndian, float32(v))
+		}
+	}
+}
+
+func writeVec(w *bufio.Writer, vec []float64) {
+	for _, v := range vec {
+		binary.Write(w, binary.LittleEndian, float32(v))
+	}
+}
+
+func readMatrix(r *bufio.Reader, rows, cols int) [][]float64 {
+	mat := make([][]float64, rows)
+	for i := range mat {
+		mat[i] = make([]float64, cols)
+		for j := range mat[i] {
+			var v float32
+			binary.Read(r, binary.LittleEndian, &v)
+			mat[i][j] = float64(v)
+		}
+	}
+	return mat
+}
+
+func readVec(r *bufio.Reader, size int) []float64 {
+	vec := make([]float64, size)
+	for i := range vec {
+		var v float32
+		binary.Read(r, binary.LittleEndian, &v)
+		vec[i] = float64(v)
+	}
+	return vec
 }
